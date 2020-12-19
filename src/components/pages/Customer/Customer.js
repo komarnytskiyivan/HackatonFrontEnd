@@ -14,7 +14,7 @@ function Customer() {
                 <div className="customer-header header">
                     <div className="header-user">
                         <div className="header-svg-container customer-item">
-                            <img src="./assets/svg/Union.svg" alt="Hi,customer" className="header-hi"/>
+                            <img src="./assets/svg/Hand.svg" alt="Hi,customer" className="header-hi"/>
                         </div>
                         <p className="user-text">Вітаємо, Юзернейм!</p>
                     </div>
@@ -32,12 +32,8 @@ function Customer() {
                     </div>
                 </div>
                 <div className="product-list customer-item">
-                    <p className="header-text">Список необхідних товарів</p>
-                    <img src="./assets/svg/plus.svg" alt="AddProducts" className="add-products"/>
-                </div>
-                </div>
-                <div className="customer-map customer-item">
-                <InstantSearch indexName="airports" searchClient={searchClient}>
+                    <p className="header-text">Ваша адреса</p>
+                    <InstantSearch indexName="airports" searchClient={searchClient}>
                 <div className="search-panel">
                     <div className="search-panel__results">
                     <Places
@@ -52,8 +48,13 @@ function Customer() {
                 </div>
                 </InstantSearch>
                 </div>
-                </div>
                 <button type="submit" className="send-button">Відправити заяву</button>
+                </div>
+                <div className="customer-map customer-item">
+                    <p className="header-text-main">Список необхідних товарів</p>
+                    <textarea className="info-input info-input-textarea" size="18" placeholder="Напишіть що треба взяти..."></textarea>
+                </div>
+                </div>
             </div>
         </div>
     )
