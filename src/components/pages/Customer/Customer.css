@@ -2,24 +2,44 @@
     color: black;
     padding:  74px 0;
 }
+
+
 .header{
     display: flex;
     align-items: flex-end;
     margin-bottom: 70px;
 }
 .header-user{
-    display: flex;
+    display: inline-block;
 }
+
+.header-logo {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+.header-logo-text-customer{
+    font-weight: 200;
+    font-size: 64px;
+    line-height: 78px;
+    display: flex;
+    align-items: flex-end;
+    color: #7D9FE1;
+}
+
 .header-svg-container{
     width: 90px;
     height: 90px;
     padding: 13px;
+    float: left;
 }
 .user-text{
     font-style: normal;
     font-weight: 600;
     font-size: 24px;
     margin-left: 23px;
+    display: inline-block;
 }
 .customer-item{
     background: linear-gradient(168.53deg, rgba(234, 255, 254, 0.5) 0%, rgba(205, 201, 241, 0.5) 97.46%);
