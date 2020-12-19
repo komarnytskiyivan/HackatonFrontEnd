@@ -28,8 +28,8 @@ function Courier() {
                         </div>
                         <p className="user-text">Вітаємо, Юзернейм!</p>
                     </div>
-                    <div className="header-logo">
-                        <p className="header-logo-text"><strong>COV</strong>OLUNTARY</p>
+                    <div className="header-logo header-logo-text">
+                        <strong>COV</strong>OLUNTARY
                     </div>
                 </div>
                 <div className="flex-main">
