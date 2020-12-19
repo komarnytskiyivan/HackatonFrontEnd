@@ -1,8 +1,23 @@
-import React from 'react'
+import React, { Component, useEffect, useState,useRef } from "react";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import CustomItem from "../../CustomItem/CustomItem";
 import "./Courier.css";
 function Courier() {
+    const [customs, setCustoms] = useState([]);
+  useEffect(() => {
+    fetchData();
+  }, []);
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        `https://2le7g8.deta.dev/api/v1/order/?skip=0&limit=100`
+      );
+      const data = await response.json();
+      setCustoms(data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
     return (
         <div className='courier__hero-section pinkBg'>
             <div className="container">
@@ -31,9 +46,13 @@ function Courier() {
                 </div>
                 <div className="courier-customs courier-item">
                     <p className="text-main">Ви можете допомогти цим людям:</p>
-                    <CustomItem/>
-                    <CustomItem/>
-                    <CustomItem/>
+                    {
+                    customs.map((datumn) => {
+                    return (
+                        <CustomItem
+                        />
+                    );
+                })}
                 </div>
                 </div>
             </div>

@@ -1,7 +1,13 @@
-import React from 'react'
+import React, { Component, Fragment } from 'react'
 import './Customer.css'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import algoliasearch from 'algoliasearch/lite';
+import { InstantSearch, ClearRefinements } from 'react-instantsearch-dom';
+import Places from '../../places/widget';
 function Customer() {
+    const searchClient = algoliasearch(
+        'latency',
+        '6be0576ff61c053d5f9a3225e2a90f76'
+      );
     return (
         <div className='customer__hero-section blueBg'>
             <div className="container">
@@ -12,8 +18,8 @@ function Customer() {
                         </div>
                         <p className="user-text">Вітаємо, Юзернейм!</p>
                     </div>
-                    <div className="header-logo">
-                        <img src="./assets/COVOLUNTARY.png" alt="Logo" className="header-logo-ing"/>
+                    <div className="header-logo header-logo-text-customer">
+                        <strong>COV</strong>OLUNTARY
                     </div>
                 </div>
                 <div className="flex-main">
@@ -30,8 +36,22 @@ function Customer() {
                     <img src="./assets/svg/plus.svg" alt="AddProducts" className="add-products"/>
                 </div>
                 </div>
-                <div className="customer-map customer-item"></div>
-                
+                <div className="customer-map customer-item">
+                <InstantSearch indexName="airports" searchClient={searchClient}>
+                <div className="search-panel">
+                    <div className="search-panel__results">
+                    <Places
+                        defaultRefinement={{
+                        lat: 37.7793,
+                        lng: -122.419,
+                        }}
+                    />
+                    <div style={{ height: 500 }}>
+                    </div>
+                    </div>
+                </div>
+                </InstantSearch>
+                </div>
                 </div>
                 <button type="submit" className="send-button">Відправити заяву</button>
             </div>
