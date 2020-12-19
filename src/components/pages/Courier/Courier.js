@@ -21,9 +21,9 @@ const Courier = (variable = true) => {
   };
   function ChangeCurrentCustom(username, custom){
     console.log(1)
-    // setCurrentCustom({
-    //   user: username
-    // })
+    setCurrentCustom({
+      user: username
+    })
   }
     return (
         <div className='courier__hero-section pinkBg'>
@@ -51,13 +51,14 @@ const Courier = (variable = true) => {
                     {
                     customs.map((datumn, index) => {
                     return (
+                      <button onClick={ () => {ChangeCurrentCustom(datumn.user.full_name)}}>
                         <CustomItem
-                        onClick={ChangeCurrentCustom()}
                         key={index}
                         name={datumn.user.full_name}
                         phone={datumn.user.phone_number}
                         address={datumn.address}
                         />
+                      </button>
                     );
                 })}
                 </div>
