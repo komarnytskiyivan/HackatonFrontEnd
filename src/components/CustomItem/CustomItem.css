@@ -18,3 +18,12 @@
     margin-left: 15px;
     font-weight: 500;
 }
+.showonmap-text{
+    font-weight: 500;
+    font-size: 20px;
+}
+.show-map{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}

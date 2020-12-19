@@ -2,15 +2,16 @@ import React, { Component, useEffect, useState,useRef } from "react";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import CustomItem from "../../CustomItem/CustomItem";
 import "./Courier.css";
-function Courier() {
+const Courier = (variable = true) => {
     const [customs, setCustoms] = useState([]);
+    const [currentCustom, setCurrentCustom] = useState(variable ? true : false);
   useEffect(() => {
     fetchData();
   }, []);
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `https://2le7g8.deta.dev/api/v1/order/?skip=0&limit=100`
+        `https://2le7g8.deta.dev/api/v1/order/?skip=0&limit=1`
       );
       const data = await response.json();
       setCustoms(data);
@@ -18,6 +19,12 @@ function Courier() {
       console.log(error.message);
     }
   };
+  function ChangeCurrentCustom(username, custom){
+    console.log(1)
+    setCurrentCustom({
+      user: username
+    })
+  }
     return (
         <div className='courier__hero-section pinkBg'>
             <div className="container">
@@ -35,22 +42,17 @@ function Courier() {
                 <div className="flex-main">
                 <div className="flex-item-config">
                 <div className="courier-item list-products">
-                    <p className="header-text">Список товарів Максима</p>
-                    <ul className="products">
-                    <li>Первый пункт</li>
-                    <li>Второй пункт</li>
-                    <li>Третий пункт</li>
-                    </ul>
+                    <p className="header-text">Список товарів користувача {currentCustom.user}</p>
                 </div>
                 <button type="submit" className="agree-button">Відправити заяву</button>
                 </div>
                 <div className="courier-customs courier-item">
                     <p className="text-main">Ви можете допомогти цим людям:</p>
-                    <CustomItem/>
                     {
                     customs.map((datumn, index) => {
                     return (
                         <CustomItem
+                        onClick={ChangeCurrentCustom(datumn.user.full_name, datumn)}
                         key={index}
                         name={datumn.user.full_name}
                         phone={datumn.user.phone_number}

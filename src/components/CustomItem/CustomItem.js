@@ -20,7 +20,7 @@ function CustomItem(props) {
             <div className="show-map">
                 <a href={props.adress}>
                 <img src="./assets/svg/showmap.svg" alt="ShowOnMap"/>
-                <small className="showonmap-text">Відкрити на мапі</small>
+                <p className="showonmap-text">Відкрити на мапі</p>
                 </a>
             </div>
         </div>
