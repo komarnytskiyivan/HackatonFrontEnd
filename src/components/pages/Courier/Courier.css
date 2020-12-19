@@ -1,0 +1,66 @@
+.courier__hero-section{
+    color: black;
+    padding:  74px 0;
+}
+.header{
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 70px;
+}
+.header-user{
+    display: flex;
+}
+.header-svg-container{
+    width: 90px;
+    height: 90px;
+    padding: 16px;
+}
+.header-logo-text{
+    font-weight: 200;
+    font-size: 64px;
+    line-height: 78px;
+    display: flex;
+    align-items: flex-end;
+    color: #E42A8F;
+}
+.user-text{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    margin-left: 23px;
+}
+.courier-item{
+    background: linear-gradient(168.53deg, rgba(234, 255, 254, 0.5) 0%, rgba(205, 201, 241, 0.5) 97.46%);
+    box-shadow: 30.8555px 30.8555px 77.1387px rgba(29, 24, 63, 0.2);
+    backdrop-filter: blur(9.25665px);
+    border-radius: 15.1724px;
+}
+.list-products{
+    width: 408px;
+    height: 580px;
+    padding-top: 1px;
+    padding-right: 40px;
+    padding-left: 40px;
+}
+.products li{
+    font-weight: 500;
+    font-size: 24px;
+    margin-top: 16px;
+}
+.agree-button{
+    width: 408px;
+    height: 90px;
+    background: linear-gradient(90deg, #FF9A9E 0%, #FECFEF 99%, #FECFEF 100%);
+    border: 5px solid #000000;
+    border-radius: 25px;
+    color: black;
+    font-weight: 500;
+    font-size: 24px;
+    margin-top: 10px;
+}
+.courier-customs{
+    width: 790px;
+    height: 680px;
+    margin-left: 10px;
+    padding-left: 60px;
+}

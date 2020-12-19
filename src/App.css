@@ -1,14 +1,32 @@
 .App {
   text-align: center;
 }
-.darkBg{
+.blueBg{
   background: linear-gradient(90deg, #A1C4FD 0%, #C2E9FB 100%);
+}
+.pinkBg{
+  background: linear-gradient(90deg, #FF9A9E 0%, #FECFEF 99%, #FECFEF 100%);
 }
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
-
+.header-text{
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 34px;
+  display: flex;
+  align-items: flex-end;
+  margin-top: 30px;
+}
+.flex-item-config{
+  display: flex;
+  flex-direction: column;
+}
+.flex-main{
+  display: flex;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

@@ -3,14 +3,14 @@ import './Customer.css'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 function Customer() {
     return (
-        <div className='customer__hero-section darkBg'>
+        <div className='customer__hero-section blueBg'>
             <div className="container">
                 <div className="customer-header header">
                     <div className="header-user">
                         <div className="header-svg-container customer-item">
                             <img src="./assets/svg/Hand.svg" alt="Hi,customer" className="header-hi"/>
                         </div>
-                        <h1 className="user-text">Вітаємо, Юзернейм!</h1>
+                        <p className="user-text">Вітаємо, Юзернейм!</p>
                     </div>
                     <div className="header-logo">
                         <img src="./assets/COVOLUNTARY.png" alt="Logo" className="header-logo-ing"/>
