@@ -2,8 +2,10 @@ import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 function Courier() {
     return (
-        <div>
-            
+        <div className='courier__hero-section darkBg'>
+            <div className="container">
+                
+            </div>
         </div>
     )
 }
