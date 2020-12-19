@@ -63,4 +63,15 @@
     height: 680px;
     margin-left: 10px;
     padding-left: 60px;
+    overflow-y: scroll;
+}
+.showmap{
+    width: 190px;
+    height: 190px;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(168.53deg, rgba(234, 255, 254, 0.5) 0%, rgba(205, 201, 241, 0.5) 97.46%);
+    box-shadow: 78.8889px 78.8889px 197.222px rgba(29, 24, 63, 0.2);
+    backdrop-filter: blur(23.6667px);
+    border-radius: 0px 20px 20px 0px;
 }

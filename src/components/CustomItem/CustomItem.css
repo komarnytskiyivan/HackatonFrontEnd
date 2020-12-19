@@ -1,0 +1,20 @@
+.CustomItem{
+    background: linear-gradient(168.53deg, rgba(234, 255, 254, 0.5) 0%, rgba(205, 201, 241, 0.5) 97.46%);
+    box-shadow: 78.8889px 78.8889px 197.222px rgba(29, 24, 63, 0.2);
+    backdrop-filter: blur(23.6667px);
+    border-radius: 20px;
+    width: 540px;
+    height: 190px;
+    display: flex;
+    padding-left: 35px;
+    padding-top: 30px;
+    margin-bottom: 20px;
+}
+.user-info-item{
+    display: flex;
+    margin-bottom: 20px;
+}
+.user-info-text{
+    margin-left: 15px;
+    font-weight: 500;
+}

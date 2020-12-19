@@ -27,10 +27,11 @@ function Customer() {
                 </div>
                 <div className="product-list customer-item">
                     <p className="header-text">Список необхідних товарів</p>
-                    <img src="./assets/svg/Vector.svg" alt="AddProducts" className="add-products"/>
+                    <img src="./assets/svg/plus.svg" alt="AddProducts" className="add-products"/>
                 </div>
                 </div>
                 <div className="customer-map customer-item"></div>
+                
                 </div>
                 <button type="submit" className="send-button">Відправити заяву</button>
             </div>
