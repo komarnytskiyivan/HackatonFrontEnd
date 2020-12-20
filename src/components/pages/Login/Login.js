@@ -46,7 +46,7 @@ function Login() {
                     </div>
                     </Link>
                     <div className="choose-item">
-                    <Link to="./Courier" token={token.token}>
+                    <Link to={{ pathname:"./Courier", token:{token}}}>
                     <div className="header-svg-container-courier courier-item">
                         <img src="./assets/svg/Union.svg" alt="Hi,courier" className="header-hi"/>
                     </div>

@@ -4,17 +4,34 @@ import "./Courier.css";
 const Courier = (props) => {
     const [customs, setCustoms] = useState([]);
     const [currentCustom, setCurrentCustom] = useState([]);
+    const [name, setName] = useState([]);
   useEffect(() => {
     fetchData();
+    fetchName();
     setCurrentCustom({ready:false})
   }, []);
+  const fetchName= async () => {
+    try {
+      const response = await fetch(
+        `http://tymkiv.pp.ua/api/v1/user/me`, {
+          method: 'GET',
+          headers: {
+            'Authorization':`${props.location.token.token}`
+          }
+        });
+      const data = await response.json();
+      setName(data.name);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   const fetchData = async () => {
     try {
       const response = await fetch(
         `http://tymkiv.pp.ua/api/v1/order/`
       );
       const data = await response.json();
-      console.log(props)
+      console.log(props.location.token)
       setCustoms(data);
     } catch (error) {
       console.log(error.message);
@@ -51,7 +68,7 @@ const Courier = (props) => {
                         <div className="header-svg-container-courier courier-item">
                             <img src="./assets/svg/Union.svg" alt="Hi,courier" className="header-hi"/>
                         </div>
-                        <p className="user-text">Вітаємо, Кур'єр!</p>
+                        <p className="user-text">Вітаємо,{name}!</p>
                     </div>
                     <div className="header-logo header-logo-text">
                         <strong>COV</strong>OLUNTARY
