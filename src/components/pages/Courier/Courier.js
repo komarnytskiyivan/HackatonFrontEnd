@@ -12,7 +12,7 @@ const Courier = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `https://2le7g8.deta.dev/api/v1/order/?skip=0&limit=2`
+        `http://tymkiv.pp.ua/api/v1/order/`
       );
       const data = await response.json();
       setCustoms(data);
@@ -23,24 +23,23 @@ const Courier = () => {
   const AgreeCustom = async() =>{
     try {
       const response = await fetch(
-        `https://2le7g8.deta.dev/api/v1/order/?skip=0&limit=1`, {
+        `http://tymkiv.pp.ua/api/v1/order/agree/${currentCustom.id}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDg0MjgwODgsInN1YiI6IjEifQ.Zv6VhNNVR4xoGKsAJ2Ud-iEtWs-MV9B3_rw4AB2nZjs'
+            'Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDg0MzUyMjYsInN1YiI6IjEifQ.RFlDVoDUuXu_Gi5B7sHEWFyV44DbCE3la6FD3xlHkYE'
           },
-          body: JSON.stringify(data)
         });
-      const data = await response.json();
-      setCustoms(data);
+        fetchData();
     } catch (error) {
       console.log(error.message);
     }
   }
-  function ChangeCurrentCustom(username, items){
+  function ChangeCurrentCustom(username, items, id){
     setCurrentCustom({
       user: username,
       items: items,
+      id: id,
       ready:true
     })
   }
@@ -64,14 +63,14 @@ const Courier = () => {
                     <p className="header-text">{currentCustom.ready ? `Список товарів користувача ${currentCustom.user}` : "Будь-ласка, виберіть користувача"}</p>
                     <p className="describe-product">{currentCustom.items}</p>
                 </div>
-                <button type="submit" className={currentCustom.ready ? "active agree-button" : "notactive agree-button"}>Відправити заяву</button>
+                <button type="submit" className={currentCustom.ready ? "active agree-button" : "notactive agree-button"} onClick={AgreeCustom}>Відправити заяву</button>
                 </div>
                 <div className="courier-customs courier-item">
                     <p className="text-main">Ви можете допомогти цим людям:</p>
                     {
                     customs.map((datumn, index) => {
                     return (
-                      <button className="CustomItem" onClick={ () => {ChangeCurrentCustom(datumn.user.full_name, datumn.items)}} key={index}>
+                      <button className="CustomItem" onClick={ () => {ChangeCurrentCustom(datumn.user.full_name, datumn.items, datumn.id)}} key={index}>
                         <CustomItem
                         name={datumn.user.full_name}
                         phone={datumn.user.phone_number}

@@ -30,7 +30,7 @@
     border: none;
 }
 
-input[type=text] {
+input[type=text].login-form {
     height:17px;
     border: 0;
     width: calc(100% - 2px);
@@ -39,7 +39,7 @@ input[type=text] {
     -webkit-transition: box-shadow 0.3s;
     transition: box-shadow 0.3s;
   }
-  input[type=text]:focus {
+  input[type=text]:focus.login-form {
     outline: none;
     box-shadow: -8px 10px 0px -7px #4EA6EA, 8px 10px 0px -7px #4EA6EA;
   }
