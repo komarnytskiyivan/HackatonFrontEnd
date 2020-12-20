@@ -19,9 +19,11 @@ function Login() {
             setToken({
                 token: `Bearer ${data.access_token}`
             })
-            setTimeout(() => console.log(token.token), 5000)
         } catch (error) {
           console.log(error.message);
+          setToken({
+            token: false
+        })
         }
       }
     return (
@@ -38,7 +40,7 @@ function Login() {
                     <button type="submit" onClick={LoginUser} className="login-button">Вхід</button>
                     {token.token ? <div><p>Choose your role</p>
                     <div className="choose-role">
-                    <Link to="/Customer" token={token.token}>
+                    <Link to={{ pathname:"./Customer", token:{token}}}>
                     <div className="choose-item">
                     <div className="header-svg-container-customer customer-item">
                         <img src="./assets/svg/Hand.svg" alt="Hi,customer" className="header-hi"/>
@@ -46,7 +48,7 @@ function Login() {
                     </div>
                     </Link>
                     <div className="choose-item">
-                    <Link to="./Courier" token={token.token}>
+                    <Link to={{ pathname:"./Courier", token:{token}}}>
                     <div className="header-svg-container-courier courier-item">
                         <img src="./assets/svg/Union.svg" alt="Hi,courier" className="header-hi"/>
                     </div>

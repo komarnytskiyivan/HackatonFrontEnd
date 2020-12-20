@@ -1,29 +1,44 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState,useEffect } from 'react'
 import './Customer.css'
 import algoliasearch from 'algoliasearch/lite';
 import { InstantSearch } from 'react-instantsearch-dom';
 import Places from '../../places/widget';
-function Customer() {
+const Customer = (props) => {
     let addressRef = useRef(null);
     let nameRef = useRef(null);
     let phoneRef = useRef(null);
     let itemsRef = useRef(null);
-    let placesRef = useRef(null);
+    const [name, setName] = useState([]);
+    useEffect(() => {
+        fetchName();
+      }, []);
+    const fetchName= async () => {
+        try {
+          const response = await fetch(
+            `http://tymkiv.pp.ua/api/v1/user/me`, {
+              method: 'GET',
+              headers: {
+                'Authorization':`${props.location.token.token.token}`
+              }
+            });
+          const data = await response.json();
+          setName(data.full_name);
+        } catch (error) {
+          console.log(error.message);
+        }
+      };
     const searchClient = algoliasearch(
         'latency',
         '6be0576ff61c053d5f9a3225e2a90f76'
       );
       const AddCustom = async() =>{
-        console.log(addressRef)
-        console.log(itemsRef.current.value)
-        console.log(placesRef)
         try {
           const response = await fetch(
             `http://tymkiv.pp.ua/api/v1/order/`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
-                'Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDg0NDA2MTksInN1YiI6IjEifQ.UZkb7qjt_IKtOziZODZwLYT207zwrc0lyeZubGLPCRo'
+                'Authorization':`${props.location.token.token.token}`
               },
               body: JSON.stringify({"address": addressRef.current.value,
               "price": true,
@@ -43,7 +58,7 @@ function Customer() {
                         <div className="header-svg-container-customer customer-item">
                             <img src="./assets/svg/Hand.svg" alt="Hi,customer" className="header-hi"/>
                         </div>
-                        <p className="user-text">Вітаємо, Юзернейм!</p>
+                        <p className="user-text">Вітаємо, Замовник {name}!</p>
                     </div>
                     <div className="header-logo header-logo-text-customer">
                         <strong>COV</strong>OLUNTARY
@@ -60,28 +75,9 @@ function Customer() {
                 </div>
                 <div className="product-list customer-item">
                     <p className="header-text">Ваша адреса</p>
-                    
-                    <InstantSearch 
-                        ref={addressRef}
-                        indexName="airports"
-                        searchClient={searchClient} 
-                    >
-                <div className="search-panel">
-                    <div className="search-panel__results">
-                    <Places
-                        ref={placesRef}
-                        defaultRefinement={{
-                            lat: 37.7793,
-                            lng: -122.419,
-                        }}
-                    />
-                    <div style={{ height: 50 }}>
-                    </div>
-                    </div>
+                    <input type="text" className="info-input" size="18" ref={addressRef} placeholder="Ваша адреса"></input>
                 </div>
-                </InstantSearch>
-                </div>
-                <button type="submit" onClick={AddCustom} className="send-button">Відправити заяву</button>
+                <button type="submit" onClick={AddCustom} className="send-button">Створити замовлення</button>
                 </div>
                 <div className="customer-map customer-item">
                     <p className="header-text-main">Список необхідних товарів</p>
