@@ -2,7 +2,7 @@ import React from 'react'
 import './CustomItem.css'
 function CustomItem(props) {
     return (
-        <div className="CustomItem">
+        <div className="item-main">
             <div className="user-info">
                 <div className="user-info-item">
                     <img src="./assets/svg/user.svg" alt="user"/>
