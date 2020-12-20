@@ -13,19 +13,22 @@ function Customer() {
         '6be0576ff61c053d5f9a3225e2a90f76'
       );
       const AddCustom = async() =>{
+        console.log(addressRef.current.textContent)
+        console.log(itemsRef.current.value)
+
         try {
           const response = await fetch(
             `http://tymkiv.pp.ua/api/v1/order/`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
-                'Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDg0MzgyNjgsInN1YiI6IjEifQ.t6uCBI77Dm500SAMJi_FJj93qb-go7Cvp32HG7jAaJE'
+                'Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDg0NDA2MTksInN1YiI6IjEifQ.UZkb7qjt_IKtOziZODZwLYT207zwrc0lyeZubGLPCRo'
               },
-              body: {"address": addressRef.current.value,
+              body: JSON.stringify({"address": addressRef.current.value,
               "price": true,
               "items": itemsRef.current.value,
               "full_name": nameRef.current.value,
-              "phone_number": phoneRef.current.value}
+              "phone_number": phoneRef.current.value})
             });
         } catch (error) {
           console.log(error.message);
