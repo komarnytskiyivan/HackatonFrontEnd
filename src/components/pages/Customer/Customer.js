@@ -8,28 +8,36 @@ function Customer() {
     let nameRef = useRef(null);
     let phoneRef = useRef(null);
     let itemsRef = useRef(null);
+    let placesRef = useRef(null);
+    let refPlaces = useRef(null);
     const searchClient = algoliasearch(
         'latency',
         '6be0576ff61c053d5f9a3225e2a90f76'
       );
       const AddCustom = async() =>{
+        console.log(addressRef)
+        console.log(itemsRef.current.value)
+        console.log(refPlaces)
         try {
           const response = await fetch(
             `http://tymkiv.pp.ua/api/v1/order/`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
-                'Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDg0MzgyNjgsInN1YiI6IjEifQ.t6uCBI77Dm500SAMJi_FJj93qb-go7Cvp32HG7jAaJE'
+                'Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDg0NDA2MTksInN1YiI6IjEifQ.UZkb7qjt_IKtOziZODZwLYT207zwrc0lyeZubGLPCRo'
               },
-              body: {"address": addressRef.current.value,
+              body: JSON.stringify({"address": addressRef.current.value,
               "price": true,
               "items": itemsRef.current.value,
               "full_name": nameRef.current.value,
-              "phone_number": phoneRef.current.value}
+              "phone_number": phoneRef.current.value})
             });
         } catch (error) {
           console.log(error.message);
         }
+      }
+      function handleChange() {
+        console.log("change")
       }
     return (
         <div className='customer__hero-section blueBg'>
@@ -56,13 +64,21 @@ function Customer() {
                 </div>
                 <div className="product-list customer-item">
                     <p className="header-text">Ваша адреса</p>
-                    <InstantSearch ref={addressRef} indexName="airports" searchClient={searchClient}>
-                <div className="search-panel">
+                    
+                    <InstantSearch 
+                        ref={addressRef}
+                        indexName="airports"
+                        searchClient={searchClient} 
+                        change={()=> {console.log("ON CHANGE")}}
+                        onSuggestion={()=> {console.log("ON SUGGEST")}}
+                        onCursorChanged={()=> {console.log("ON CURSORCHANGE")}}>
+                <div className="search-panel" ref={placesRef}>
                     <div className="search-panel__results">
                     <Places
+                        ref={refPlaces}
                         defaultRefinement={{
-                        lat: 37.7793,
-                        lng: -122.419,
+                            lat: 37.7793,
+                            lng: -122.419,
                         }}
                     />
                     <div style={{ height: 50 }}>

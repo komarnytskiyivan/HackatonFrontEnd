@@ -19,7 +19,9 @@ class Places extends Component {
     });
 
     autocomplete.on('change', event => {
-      refine(event.suggestion.latlng);
+      console.log("*************")
+      console.log(event.suggestion)
+      refine(event.suggestion);
     });
 
     autocomplete.on('clear', () => {
@@ -34,7 +36,7 @@ class Places extends Component {
           ref={this.createRef}
           type="search"
           id="address-input"
-          placeholder="Where are we going?"
+          placeholder="Введіть адресу"
         />
       </div>
     );
