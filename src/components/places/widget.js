@@ -20,6 +20,8 @@ class Places extends Component {
 
     autocomplete.on('change', event => {
       refine(event.suggestion);
+      console.log("*******************")
+      console.log(event.suggestion.value)
     });
 
     autocomplete.on('clear', () => {
