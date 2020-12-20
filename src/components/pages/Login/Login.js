@@ -19,7 +19,7 @@ function Login() {
             setToken({
                 token: `Bearer ${data.access_token}`
             })
-            setTimeout(() => console.log(token.token), 5000)
+            console.log(token)
         } catch (error) {
           console.log(error.message);
         }

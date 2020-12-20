@@ -14,7 +14,7 @@ const Courier = (props) => {
         `http://tymkiv.pp.ua/api/v1/order/`
       );
       const data = await response.json();
-      console.log(props.token)
+      console.log(props)
       setCustoms(data);
     } catch (error) {
       console.log(error.message);
@@ -51,7 +51,7 @@ const Courier = (props) => {
                         <div className="header-svg-container-courier courier-item">
                             <img src="./assets/svg/Union.svg" alt="Hi,courier" className="header-hi"/>
                         </div>
-                        <p className="user-text">Вітаємо, Юзернейм!</p>
+                        <p className="user-text">Вітаємо, Кур'єр!</p>
                     </div>
                     <div className="header-logo header-logo-text">
                         <strong>COV</strong>OLUNTARY

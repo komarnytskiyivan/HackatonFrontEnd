@@ -42,7 +42,7 @@ function Customer() {
                         <div className="header-svg-container-customer customer-item">
                             <img src="./assets/svg/Hand.svg" alt="Hi,customer" className="header-hi"/>
                         </div>
-                        <p className="user-text">Вітаємо, Юзернейм!</p>
+                        <p className="user-text">Вітаємо, Замовник!</p>
                     </div>
                     <div className="header-logo header-logo-text-customer">
                         <strong>COV</strong>OLUNTARY
