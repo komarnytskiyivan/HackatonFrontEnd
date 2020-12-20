@@ -8,7 +8,6 @@ const Customer = (props) => {
     let nameRef = useRef(null);
     let phoneRef = useRef(null);
     let itemsRef = useRef(null);
-    let placesRef = useRef(null);
     const [name, setName] = useState([]);
     useEffect(() => {
         fetchName();
@@ -23,7 +22,6 @@ const Customer = (props) => {
               }
             });
           const data = await response.json();
-          console.log(props.location.token.token.token)
           setName(data.full_name);
         } catch (error) {
           console.log(error.message);
@@ -34,9 +32,6 @@ const Customer = (props) => {
         '6be0576ff61c053d5f9a3225e2a90f76'
       );
       const AddCustom = async() =>{
-        console.log(addressRef)
-        console.log(itemsRef.current.value)
-        console.log(placesRef)
         try {
           const response = await fetch(
             `http://tymkiv.pp.ua/api/v1/order/`, {
@@ -80,26 +75,7 @@ const Customer = (props) => {
                 </div>
                 <div className="product-list customer-item">
                     <p className="header-text">Ваша адреса</p>
-                    
-                    <InstantSearch 
-                        ref={addressRef}
-                        indexName="airports"
-                        searchClient={searchClient} 
-                    >
-                <div className="search-panel">
-                    <div className="search-panel__results">
-                    <Places
-                        ref={placesRef}
-                        defaultRefinement={{
-                            lat: 37.7793,
-                            lng: -122.419,
-                        }}
-                    />
-                    <div style={{ height: 50 }}>
-                    </div>
-                    </div>
-                </div>
-                </InstantSearch>
+                    <input type="text" className="info-input" size="18" ref={addressRef} placeholder="Ваша адреса"></input>
                 </div>
                 <button type="submit" onClick={AddCustom} className="send-button">Відправити заяву</button>
                 </div>

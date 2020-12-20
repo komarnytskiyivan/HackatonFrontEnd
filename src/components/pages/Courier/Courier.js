@@ -20,7 +20,6 @@ const Courier = (props) => {
           }
         });
       const data = await response.json();
-      console.log(props.location.token.token.token)
       setName(data.full_name);
     } catch (error) {
       console.log(error.message);
@@ -32,7 +31,6 @@ const Courier = (props) => {
         `http://tymkiv.pp.ua/api/v1/order/`
       );
       const data = await response.json();
-      console.log(props.location.token)
       setCustoms(data);
     } catch (error) {
       console.log(error.message);
