@@ -2,11 +2,12 @@ import React, { Component, useEffect, useState,useRef } from "react";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import CustomItem from "../../CustomItem/CustomItem";
 import "./Courier.css";
-const Courier = (variable = true) => {
+const Courier = () => {
     const [customs, setCustoms] = useState([]);
-    const [currentCustom, setCurrentCustom] = useState(variable ? true : false);
+    const [currentCustom, setCurrentCustom] = useState([]);
   useEffect(() => {
     fetchData();
+    setCurrentCustom({ready:false})
   }, []);
   const fetchData = async () => {
     try {
@@ -19,10 +20,28 @@ const Courier = (variable = true) => {
       console.log(error.message);
     }
   };
-  function ChangeCurrentCustom(username, custom){
-    console.log(1)
+  const AgreeCustom = async() =>{
+    try {
+      const response = await fetch(
+        `https://2le7g8.deta.dev/api/v1/order/?skip=0&limit=1`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDg0MjgwODgsInN1YiI6IjEifQ.Zv6VhNNVR4xoGKsAJ2Ud-iEtWs-MV9B3_rw4AB2nZjs'
+          },
+          body: JSON.stringify(data)
+        });
+      const data = await response.json();
+      setCustoms(data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+  function ChangeCurrentCustom(username, items){
     setCurrentCustom({
-      user: username
+      user: username,
+      items: items,
+      ready:true
     })
   }
     return (
@@ -30,7 +49,7 @@ const Courier = (variable = true) => {
             <div className="container">
                 <div className="customer-header header">
                     <div className="header-user">
-                        <div className="header-svg-container courier-item">
+                        <div className="header-svg-container-courier courier-item">
                             <img src="./assets/svg/Union.svg" alt="Hi,courier" className="header-hi"/>
                         </div>
                         <p className="user-text">Вітаємо, Юзернейм!</p>
@@ -42,25 +61,24 @@ const Courier = (variable = true) => {
                 <div className="flex-main">
                 <div className="flex-item-config">
                 <div className="courier-item list-products">
-                    <p className="header-text">Список товарів користувача {currentCustom.user}</p>
+                    <p className="header-text">{currentCustom.ready ? `Список товарів користувача ${currentCustom.user}` : "Будь-ласка, виберіть користувача"}</p>
+                    <p className="describe-product">{currentCustom.items}</p>
                 </div>
-                <button type="submit" className="agree-button">Відправити заяву</button>
+                <button type="submit" className={currentCustom.ready ? "active agree-button" : "notactive agree-button"}>Відправити заяву</button>
                 </div>
                 <div className="courier-customs courier-item">
                     <p className="text-main">Ви можете допомогти цим людям:</p>
                     {
                     customs.map((datumn, index) => {
                     return (
-                        
-                          <button onClick={ () => {ChangeCurrentCustom(datumn.user.full_name)}}>
-                            <CustomItem
-                              key={index}
-                              name={datumn.user.full_name}
-                              phone={datumn.user.phone_number}
-                              address={datumn.address}
-                            />
-                          </button>
-                        );
+                      <button className="CustomItem" onClick={ () => {ChangeCurrentCustom(datumn.user.full_name, datumn.items)}} key={index}>
+                        <CustomItem
+                        name={datumn.user.full_name}
+                        phone={datumn.user.phone_number}
+                        address={datumn.address}
+                        />
+                      </button>
+                    );
                 })}
                 </div>
                 </div>

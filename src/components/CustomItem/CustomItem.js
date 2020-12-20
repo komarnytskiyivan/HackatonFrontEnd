@@ -2,7 +2,7 @@ import React from 'react'
 import './CustomItem.css'
 function CustomItem(props) {
     return (
-        <div className="CustomItem">
+        <div className="item-main">
             <div className="user-info">
                 <div className="user-info-item">
                     <img src="./assets/svg/user.svg" alt="user"/>
@@ -18,7 +18,7 @@ function CustomItem(props) {
                 </div>
             </div>
             <div className="show-map">
-                <a href={props.adress}>
+                <a href={`https://maps.google.com/?q=${props.address}`} target="_blank">
                 <img src="./assets/svg/showmap.svg" alt="ShowOnMap"/>
                 <p className="showonmap-text">Відкрити на мапі</p>
                 </a>
