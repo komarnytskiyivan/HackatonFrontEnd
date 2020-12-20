@@ -11,7 +11,7 @@ const Courier = (variable = true) => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `https://2le7g8.deta.dev/api/v1/order/?skip=0&limit=1`
+        `https://2le7g8.deta.dev/api/v1/order/?skip=0&limit=2`
       );
       const data = await response.json();
       setCustoms(data);
@@ -51,14 +51,16 @@ const Courier = (variable = true) => {
                     {
                     customs.map((datumn, index) => {
                     return (
-                        <CustomItem
-                        onClick={ChangeCurrentCustom(datumn.user.full_name, datumn)}
-                        key={index}
-                        name={datumn.user.full_name}
-                        phone={datumn.user.phone_number}
-                        address={datumn.address}
-                        />
-                    );
+                        
+                          <button onClick={ () => {ChangeCurrentCustom(datumn.user.full_name)}}>
+                            <CustomItem
+                              key={index}
+                              name={datumn.user.full_name}
+                              phone={datumn.user.phone_number}
+                              address={datumn.address}
+                            />
+                          </button>
+                        );
                 })}
                 </div>
                 </div>
