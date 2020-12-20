@@ -1,5 +1,4 @@
-import React, { Component, useEffect, useState,useRef } from "react";
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
 import CustomItem from "../../CustomItem/CustomItem";
 import "./Courier.css";
 const Courier = () => {

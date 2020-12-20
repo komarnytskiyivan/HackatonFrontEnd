@@ -1,7 +1,7 @@
-import React, { Component, Fragment, useRef } from 'react'
+import React, { useRef } from 'react'
 import './Customer.css'
 import algoliasearch from 'algoliasearch/lite';
-import { InstantSearch, ClearRefinements } from 'react-instantsearch-dom';
+import { InstantSearch } from 'react-instantsearch-dom';
 import Places from '../../places/widget';
 function Customer() {
     let addressRef = useRef(null);

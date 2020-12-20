@@ -4,13 +4,14 @@ import  Home  from "./components/pages/Home/Home";
 import  Courier  from "./components/pages/Courier/Courier";
 import  Customer  from "./components/pages/Customer/Customer";
 import Login from "./components/pages/Login/Login";
+import PrivateRoute from "./components/helpers/PrivateRoute";
 function App() {
   return (
     <Router>
       <Switch>
         <Route path='/' exact component={Home}/>
-        <Route path='/Courier' exact component={Courier}/>
-        <Route path='/Customer' exact component={Customer}/>
+        <PrivateRoute path='/Courier' exact component={Courier}/>
+        <PrivateRoute path='/Customer' exact component={Customer}/>
         <Route path='/Login' exact component={Login}/>
       </Switch>
     </Router>
