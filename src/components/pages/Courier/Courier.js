@@ -12,7 +12,11 @@ const Courier = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
+<<<<<<< HEAD
         `http://tymkiv.pp.ua/api/v1/order/`
+=======
+        `https://2le7g8.deta.dev/api/v1/order/?skip=0&limit=2`
+>>>>>>> efceee1e38a6956b76240f800bc86bef366715fe
       );
       const data = await response.json();
       setCustoms(data);

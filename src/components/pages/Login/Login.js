@@ -8,7 +8,7 @@ function Login() {
                 <div className="flex-main">
                 <div className="login-form">
                     <p>Вхід</p>
-                    <label for="login">Ваш e-mail</label>
+                    <label for="login field field_v1">Ваш e-mail</label>
                     <input type="text" name="username" id="login" className="input-text" placeholder="pipipoopoo@gmail.com"/>
                     <label for="login">Ваш пароль</label>
                     <input type="text" name="username" id="login" className="input-text" placeholder="Введіть пароль"/>
