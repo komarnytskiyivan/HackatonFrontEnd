@@ -43,3 +43,12 @@ input[type=text].login-form {
     outline: none;
     box-shadow: -8px 10px 0px -7px #4EA6EA, 8px 10px 0px -7px #4EA6EA;
   }
+  .choose-role{
+      display: flex;
+      flex-direction: row;
+      margin-top: 10px;
+      transform: 0.3s;
+  }
+  .choose-item{
+      margin-left: 60px;
+  }

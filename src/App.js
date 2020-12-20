@@ -4,6 +4,7 @@ import  Home  from "./components/pages/Home/Home";
 import  Courier  from "./components/pages/Courier/Courier";
 import  Customer  from "./components/pages/Customer/Customer";
 import Login from "./components/pages/Login/Login";
+import PrivateRoute from "./components/helpers/PrivateRoute";
 function App() {
   return (
     <Router>

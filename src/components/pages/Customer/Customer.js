@@ -1,7 +1,7 @@
-import React, { Component, Fragment, useRef } from 'react'
+import React, { useRef } from 'react'
 import './Customer.css'
 import algoliasearch from 'algoliasearch/lite';
-import { InstantSearch, ClearRefinements } from 'react-instantsearch-dom';
+import { InstantSearch } from 'react-instantsearch-dom';
 import Places from '../../places/widget';
 function Customer() {
     let addressRef = useRef(null);
@@ -9,7 +9,6 @@ function Customer() {
     let phoneRef = useRef(null);
     let itemsRef = useRef(null);
     let placesRef = useRef(null);
-    let refPlaces = useRef(null);
     const searchClient = algoliasearch(
         'latency',
         '6be0576ff61c053d5f9a3225e2a90f76'
@@ -17,7 +16,7 @@ function Customer() {
       const AddCustom = async() =>{
         console.log(addressRef)
         console.log(itemsRef.current.value)
-        console.log(refPlaces)
+        console.log(placesRef)
         try {
           const response = await fetch(
             `http://tymkiv.pp.ua/api/v1/order/`, {
@@ -35,9 +34,6 @@ function Customer() {
         } catch (error) {
           console.log(error.message);
         }
-      }
-      function handleChange() {
-        console.log("change")
       }
     return (
         <div className='customer__hero-section blueBg'>
@@ -69,13 +65,11 @@ function Customer() {
                         ref={addressRef}
                         indexName="airports"
                         searchClient={searchClient} 
-                        change={()=> {console.log("ON CHANGE")}}
-                        onSuggestion={()=> {console.log("ON SUGGEST")}}
-                        onCursorChanged={()=> {console.log("ON CURSORCHANGE")}}>
-                <div className="search-panel" ref={placesRef}>
+                    >
+                <div className="search-panel">
                     <div className="search-panel__results">
                     <Places
-                        ref={refPlaces}
+                        ref={placesRef}
                         defaultRefinement={{
                             lat: 37.7793,
                             lng: -122.419,

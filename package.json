@@ -8,10 +8,13 @@
     "@testing-library/user-event": "^12.6.0",
     "algolia-places-react": "^1.6.1",
     "algoliasearch": "^4.8.3",
+    "bootstrap": "^4.5.3",
     "react": "^17.0.1",
+    "react-bootstrap": "^1.4.0",
     "react-dom": "^17.0.1",
     "react-instantsearch-dom": "^6.8.2",
     "react-instantsearch-dom-maps": "^6.8.2",
+    "react-modal": "^3.12.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "web-vitals": "^0.2.4"
