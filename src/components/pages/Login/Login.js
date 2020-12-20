@@ -19,9 +19,11 @@ function Login() {
             setToken({
                 token: `Bearer ${data.access_token}`
             })
-            console.log(token)
         } catch (error) {
           console.log(error.message);
+          setToken({
+            token: false
+        })
         }
       }
     return (
