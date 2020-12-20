@@ -1,6 +1,8 @@
-import React,{ useRef } from 'react'
+import React,{ useRef, useState } from 'react'
+import { Link } from "react-router-dom";
 import './Login.css'
 function Login() {
+    const [token, setToken] = useState([]);
     let usernameRef = useRef(null)
     let passwordRef = useRef(null)
     const LoginUser = async() =>{
@@ -14,7 +16,10 @@ function Login() {
               body: formData
             })
             const data = await response.json();
-            console.log(data.access_token)
+            setToken({
+                token: `Bearer ${data.access_token}`
+            })
+            setTimeout(() => console.log(token.token), 5000)
         } catch (error) {
           console.log(error.message);
         }
@@ -26,11 +31,29 @@ function Login() {
                 <div className="flex-main">
                 <div className="login-form">
                     <p>Вхід</p>
-                    <label htmlfor="login-username field field_v1">Ваш e-mail</label>
+                    <label htmlFor="login-username field field_v1">Ваш e-mail</label>
                     <input type="text" name="username" ref={usernameRef} id="login-username" className="input-text login-form" placeholder="pipipoopoo@gmail.com"/>
-                    <label htmlfor="login-password">Ваш пароль</label>
+                    <label htmlFor="login-password">Ваш пароль</label>
                     <input type="text" name="username" ref={passwordRef} id="login-password" className="input-text login-form" placeholder="Введіть пароль"/>
                     <button type="submit" onClick={LoginUser} className="login-button">Вхід</button>
+                    {token.token ? <div><p>Choose your role</p>
+                    <div className="choose-role">
+                    <Link to="/Customer" token={token.token}>
+                    <div className="choose-item">
+                    <div className="header-svg-container-customer customer-item">
+                        <img src="./assets/svg/Hand.svg" alt="Hi,customer" className="header-hi"/>
+                    </div>
+                    </div>
+                    </Link>
+                    <div className="choose-item">
+                    <Link to="./Courier" token={token.token}>
+                    <div className="header-svg-container-courier courier-item">
+                        <img src="./assets/svg/Union.svg" alt="Hi,courier" className="header-hi"/>
+                    </div>
+                    </Link>
+                    </div>
+                    </div></div> : <div></div>}
+                    
                 </div>
                 <div className="login-img">
                 <img src="./assets/Login.png" alt="Login"/>

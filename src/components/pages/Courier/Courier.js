@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CustomItem from "../../CustomItem/CustomItem";
 import "./Courier.css";
-const Courier = () => {
+const Courier = (props) => {
     const [customs, setCustoms] = useState([]);
     const [currentCustom, setCurrentCustom] = useState([]);
   useEffect(() => {
@@ -14,6 +14,7 @@ const Courier = () => {
         `http://tymkiv.pp.ua/api/v1/order/`
       );
       const data = await response.json();
+      console.log(props.token)
       setCustoms(data);
     } catch (error) {
       console.log(error.message);
