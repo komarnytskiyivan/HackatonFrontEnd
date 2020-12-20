@@ -20,6 +20,23 @@ const Courier = () => {
       console.log(error.message);
     }
   };
+  const AgreeCustom = async() =>{
+    try {
+      const response = await fetch(
+        `https://2le7g8.deta.dev/api/v1/order/?skip=0&limit=1`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDg0MjgwODgsInN1YiI6IjEifQ.Zv6VhNNVR4xoGKsAJ2Ud-iEtWs-MV9B3_rw4AB2nZjs'
+          },
+          body: JSON.stringify(data)
+        });
+      const data = await response.json();
+      setCustoms(data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
   function ChangeCurrentCustom(username, items){
     setCurrentCustom({
       user: username,
