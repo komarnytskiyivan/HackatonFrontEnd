@@ -1,14 +1,34 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState,useEffect } from 'react'
 import './Customer.css'
 import algoliasearch from 'algoliasearch/lite';
 import { InstantSearch } from 'react-instantsearch-dom';
 import Places from '../../places/widget';
-function Customer() {
+const Customer = (props) => {
     let addressRef = useRef(null);
     let nameRef = useRef(null);
     let phoneRef = useRef(null);
     let itemsRef = useRef(null);
     let placesRef = useRef(null);
+    const [name, setName] = useState([]);
+    useEffect(() => {
+        fetchName();
+      }, []);
+    const fetchName= async () => {
+        try {
+          const response = await fetch(
+            `http://tymkiv.pp.ua/api/v1/user/me`, {
+              method: 'GET',
+              headers: {
+                'Authorization':`${props.location.token.token.token}`
+              }
+            });
+          const data = await response.json();
+          console.log(props.location.token.token.token)
+          setName(data.full_name);
+        } catch (error) {
+          console.log(error.message);
+        }
+      };
     const searchClient = algoliasearch(
         'latency',
         '6be0576ff61c053d5f9a3225e2a90f76'
@@ -23,7 +43,7 @@ function Customer() {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
-                'Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDg0NDA2MTksInN1YiI6IjEifQ.UZkb7qjt_IKtOziZODZwLYT207zwrc0lyeZubGLPCRo'
+                'Authorization':`${props.location.token.token.token}`
               },
               body: JSON.stringify({"address": addressRef.current.value,
               "price": true,
@@ -43,7 +63,7 @@ function Customer() {
                         <div className="header-svg-container-customer customer-item">
                             <img src="./assets/svg/Hand.svg" alt="Hi,customer" className="header-hi"/>
                         </div>
-                        <p className="user-text">Вітаємо, Замовник!</p>
+                        <p className="user-text">Вітаємо, Замовник {name}!</p>
                     </div>
                     <div className="header-logo header-logo-text-customer">
                         <strong>COV</strong>OLUNTARY

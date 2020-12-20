@@ -16,11 +16,12 @@ const Courier = (props) => {
         `http://tymkiv.pp.ua/api/v1/user/me`, {
           method: 'GET',
           headers: {
-            'Authorization':`${props.location.token.token}`
+            'Authorization':`${props.location.token.token.token}`
           }
         });
       const data = await response.json();
-      setName(data.name);
+      console.log(props.location.token.token.token)
+      setName(data.full_name);
     } catch (error) {
       console.log(error.message);
     }
@@ -44,7 +45,7 @@ const Courier = (props) => {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDg0MzUyMjYsInN1YiI6IjEifQ.RFlDVoDUuXu_Gi5B7sHEWFyV44DbCE3la6FD3xlHkYE'
+            'Authorization':`${props.location.token.token.token}`
           },
         });
         fetchData();
@@ -68,7 +69,7 @@ const Courier = (props) => {
                         <div className="header-svg-container-courier courier-item">
                             <img src="./assets/svg/Union.svg" alt="Hi,courier" className="header-hi"/>
                         </div>
-                        <p className="user-text">Вітаємо,{name}!</p>
+                        <p className="user-text">Вітаємо, Кур'єр {name}!</p>
                     </div>
                     <div className="header-logo header-logo-text">
                         <strong>COV</strong>OLUNTARY
